@@ -5,7 +5,7 @@ local internet = require("internet")
 
 local repo = "https://raw.githubusercontent.com/ossman11/lua/master/"
 
-function fetch(filename)
+local function fetch(filename)
     local f, reasonOpen = io.open(filename, "wb")
     assert(f, "CANNOT OPEN FILE: " .. filename .. tostring(reasonOpen))
 
@@ -25,12 +25,15 @@ function fetch(filename)
             end)
         print(tostring(reasonProcess))
     end
+    f:close()
 end
 
-function walk(folderName)
+local function walk(folderName)
     -- Fetch index file to walk contents
+    fs.makeDirectory("/home/" .. folderName)
     fetch(folderName .. "index")
     local f, reasonOpen = io.open(folderName .. "index", "r")
+    assert(f, "CANNOT OPEN FILE " .. folderName .. "index" .. tostring(reasonOpen))
     for line in f:lines() do
         local isFolder = line:match("/$")
         if isFolder then
@@ -39,6 +42,7 @@ function walk(folderName)
             fetch(folderName .. line)
         end
     end
+    f:close()
 end
 
 walk("")
