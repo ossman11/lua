@@ -9,8 +9,7 @@ function fetch(filename)
     local f, reasonOpen = io.open(filename, "wb")
     assert(f, "CANNOT OPEN FILE: " .. filename .. tostring(reasonOpen))
 
-    local canConnect, response = pcall(internet.request,
-                                       repo .. filename)
+    local canConnect, response = pcall(internet.request, repo .. filename)
     if canConnect then
         local canProcess, reasonProcess =
             pcall(function()
@@ -28,4 +27,19 @@ function fetch(filename)
     end
 end
 
-fetch("index")
+function walk(folderName)
+    -- Fetch index file to walk contents
+    fetch(folderName)
+    local f, reasonOpen = io.open(folderName + "index", "r")
+    for line in f:lines() do
+        local isFolder = line:match("/$")
+        if isFolder then
+            walk(folderName .. line)
+        else
+            fetch(folderName .. line)
+        end
+    end
+end
+
+walk("")
+
