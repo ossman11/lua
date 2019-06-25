@@ -29,8 +29,8 @@ end
 
 function walk(folderName)
     -- Fetch index file to walk contents
-    fetch(folderName)
-    local f, reasonOpen = io.open(folderName + "index", "r")
+    fetch(folderName .. "index")
+    local f, reasonOpen = io.open(folderName .. "index", "r")
     for line in f:lines() do
         local isFolder = line:match("/$")
         if isFolder then
