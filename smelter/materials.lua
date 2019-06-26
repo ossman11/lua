@@ -361,10 +361,6 @@ local liquid = {}
 local mix = {}
 
 for matId, matVal in pairs(materials) do
-    print("ID", matId)
-    print("solid", matVal.solid)
-    print("liquid", matVal.liquid)
-    print("mix", matVal.mix)
     -- prepare solid map
     if matVal.solid then
         for i, v in pairs(matVal.solid) do solid[v] = matId end
@@ -376,6 +372,7 @@ for matId, matVal in pairs(materials) do
     -- prepare mix list
     if matVal.mix then
         for i, v in pairs(matVal.mix) do
+            -- TODO FIX THIS SOMEHOW
             if not i == matId then
                 mix[i] = mix[i] or {}
                 for subI, subV in pairs(matVal.mix) do
