@@ -312,7 +312,7 @@ materials.vibrantAlloy = {
 materials.lumium = {
     solid = {"Lumium Ingot"},
     liquid = {"Molten Lumium"},
-    mix = {lumium = 72, glowstone = 125, silver = 18, rin = 54}
+    mix = {lumium = 72, glowstone = 125, silver = 18, tin = 54}
 }
 
 -- Non metals
@@ -356,6 +356,7 @@ materials.glass = {solid = {"Sand", "Glass"}, liquid = {"Liquid Glass"}}
 
 materials.diamond = {solid = {"Diamond"}, liquid = {"Molten Diamond"}}
 
+-- Create other maps
 local solid = {}
 local liquid = {}
 local mix = {}
@@ -372,11 +373,11 @@ for matId, matVal in pairs(materials) do
     -- prepare mix list
     if matVal.mix then
         for i, v in pairs(matVal.mix) do
-            -- TODO FIX THIS SOMEHOW
             if not (i == matId) then
                 mix[i] = mix[i] or {}
                 for subI, subV in pairs(matVal.mix) do
                     if not (subI == i or subI == matId) then
+                        -- TODO: check duplicates
                         table.insert(mix[i], subI)
                     end
                 end
@@ -385,6 +386,7 @@ for matId, matVal in pairs(materials) do
     end
 end
 
+-- Construct API
 local M = {}
 
 M.materials = materials
