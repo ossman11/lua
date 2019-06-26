@@ -364,7 +364,7 @@ for matId, matVal in pairs(materials) do
     -- prepare solid map
     for i, v in pairs(matVal.solid) do solid[v] = matId end
     -- prepare liquid map
-    for i, v in paris(matVal.liquid) do liquid[v] = matId end
+    for i, v in pairs(matVal.liquid) do liquid[v] = matId end
     -- prepare mix list
     for i, v in pairs(matVal.mix) do
         mix[v] = mix[v] or {}
