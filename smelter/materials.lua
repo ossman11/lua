@@ -376,10 +376,12 @@ for matId, matVal in pairs(materials) do
     -- prepare mix list
     if matVal.mix then
         for i, v in pairs(matVal.mix) do
-            mix[i] = mix[i] or {}
-            for subI, subV in pairs(matVal.mix) do
-                if not subI == i or subI == matId then
-                    table.insert(mix[i], subI)
+            if not i == matId then
+                mix[i] = mix[i] or {}
+                for subI, subV in pairs(matVal.mix) do
+                    if not (subI == i or subI == matId) then
+                        table.insert(mix[i], subI)
+                    end
                 end
             end
         end
