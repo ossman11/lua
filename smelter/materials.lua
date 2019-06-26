@@ -373,7 +373,7 @@ for matId, matVal in pairs(materials) do
     if matVal.mix then
         for i, v in pairs(matVal.mix) do
             -- TODO FIX THIS SOMEHOW
-            if not i == matId then
+            if not (i == matId) then
                 mix[i] = mix[i] or {}
                 for subI, subV in pairs(matVal.mix) do
                     if not (subI == i or subI == matId) then
