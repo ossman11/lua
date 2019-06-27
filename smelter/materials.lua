@@ -378,7 +378,13 @@ for matId, matVal in pairs(materials) do
                 for subI, subV in pairs(matVal.mix) do
                     if not (subI == i or subI == matId) then
                         -- TODO: check duplicates
-                        table.insert(mix[i], subI)
+                        local has = false
+                        for x, y in pairs(matVal.mix) do
+                            has = has or (y == subI)
+                        end
+                        if not has then
+                            table.insert(mix[i], subI)
+                        end
                     end
                 end
             end
