@@ -379,7 +379,7 @@ for matId, matVal in pairs(materials) do
                     if not (subI == i or subI == matId) then
                         -- TODO: check duplicates
                         local has = false
-                        for x, y in pairs(matVal.mix) do
+                        for x, y in pairs(mix[i]) do
                             has = has or (y == subI)
                         end
                         if not has then
