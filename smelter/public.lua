@@ -10,6 +10,6 @@ M.materials = materials
 
 -- Expose helpers
 M.helpers = helpers
-M.newSmelter = helpers.newSmelter
+M.newSmeltery = helpers.newSmeltery
 
 return M

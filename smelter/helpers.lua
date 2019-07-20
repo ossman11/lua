@@ -49,10 +49,12 @@ function getContent(smel)
         end
     end
 
-    for k, v in tankContent do
-        if v.amount then
-            local curMat = materials.toMaterial(v.label)
-            if curMat then ret[curMat] = true end
+    for k, v in pairs(tankContent) do
+        if not (k == "n") then
+            if v.amount then
+                local curMat = materials.toMaterial(v.label)
+                if curMat then ret[curMat] = true end
+            end
         end
     end
 
