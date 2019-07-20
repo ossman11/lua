@@ -400,6 +400,14 @@ M.solid = solid
 M.liquid = liquid
 M.mix = mix
 
-function M.solidToMaterial(mat) end
+function M.toMaterial(mat)
+    local materials = M.materials[mat]
+    if materials then return mat end
+    local solid = M.solid[mat]
+    if solid then return solid end
+    local liquid = M.liquid[mat]
+    if liquid then return liquid end
+    return false
+end
 
 return M
